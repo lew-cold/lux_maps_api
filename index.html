@@ -6,11 +6,15 @@
     <title>Lux Group - Maps API Coding Challenge</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
 </head>
 <body>
     <h1>hello world</h1>
     <div id="map"></div>
     <script>
+
+        // Initialise Google Maps API and initial viewframe
+
         function initMap() {
             let map = new google.maps.Map(
                 document.getElementById('map'), {
@@ -18,8 +22,13 @@
                     zoom: 2
             }); 
 
+        // Start a fetch request to the lux group API
+
             fetch('https://api.luxgroup.com/api/public-offers').then(function(response) {
                 response.json().then(function(result) {
+
+        // Take the data and import it into Google Maps API
+                    
                     let infowindow = new google.maps.InfoWindow()
                     let count, marker
                     let luxapi = result.result
@@ -33,6 +42,9 @@
                             title: newHotelDetails.name, 
                             map: map
                         });
+
+        // Create an event listener so when markers are clicked they display the name of the hotel and a URL to their page.
+
                         google.maps.event.addListener(marker, 'click', (function(marker) {
                             return function() {
                                 console.log(newHotel)
@@ -46,6 +58,7 @@
             });
         }
     </script>
+
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCW5WxWb1Z8k0MUahk3Uyf7EKIbaEUcJIg&callback=initMap">
     </script>
