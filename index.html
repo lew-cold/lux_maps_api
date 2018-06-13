@@ -7,57 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
+    <script src="index.js"></script>
 </head>
 <body>
     <h1>hello world</h1>
+
+    <!-- Place holder for map -->
+
     <div id="map"></div>
-    <script>
+    
+    <!-- Navigation to run through the properties -->
 
-        // Initialise Google Maps API and initial viewframe
-
-        function initMap() {
-            let map = new google.maps.Map(
-                document.getElementById('map'), {
-                    center: {lat: -1.28333, lng: 36.81667},
-                    zoom: 2
-            }); 
-
-        // Start a fetch request to the lux group API
-
-            fetch('https://api.luxgroup.com/api/public-offers').then(function(response) {
-                response.json().then(function(result) {
-
-        // Take the data and import it into Google Maps API
-                    
-                    let infowindow = new google.maps.InfoWindow()
-                    let count, marker
-                    let luxapi = result.result
-                    for (count = 0; count < luxapi.length; count++) {
-                        let newHotel = luxapi[count]
-                        let newHotelDetails = newHotel.lowest_price_package.property
-                        // console.log(newHotel)
-                        let newHotelLocation = {lat: newHotelDetails.latitude, lng: newHotelDetails.longitude};
-                        let marker = new google.maps.Marker({
-                            position: newHotelLocation, 
-                            title: newHotelDetails.name, 
-                            map: map
-                        });
-
-        // Create an event listener so when markers are clicked they display the name of the hotel and a URL to their page.
-
-                        google.maps.event.addListener(marker, 'click', (function(marker) {
-                            return function() {
-                                console.log(newHotel)
-                                let newHotelUrl = '<a href="https://luxuryescapes.com/au/offer/' + newHotel.slug + '/' + newHotel.id_salesforce_external + '">' + newHotelDetails.name + '</a>'
-                                infowindow.setContent('Discover: ' + newHotelUrl);
-                                infowindow.open(map, marker);
-                            }
-                        })(marker));
-                    }    
-                });
-            });
-        }
-    </script>
+    <button id="back">Back</button>  | <button id="next">Next</button>
 
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCW5WxWb1Z8k0MUahk3Uyf7EKIbaEUcJIg&callback=initMap">
