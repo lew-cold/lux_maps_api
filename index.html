@@ -8,7 +8,46 @@
     <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
 </head>
 <body>
-    <h1>Hello World</h1>
+    <h1>hello world</h1>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            let map = new google.maps.Map(
+                document.getElementById('map'), {
+                    center: {lat: 51.5074, lng: 0.1278},
+                    zoom: 2
+            }); 
+
+            fetch('https://api.luxgroup.com/api/public-offers').then(function(response) {
+                response.json().then(function(result) {
+                    let infowindow = new google.maps.InfoWindow()
+                    let count, marker
+                    let luxapi = result.result
+                    console.log(luxapi)
+                    for (count = 0; count < luxapi.length; count++) {
+                        let newHotel = luxapi[count].lowest_price_package.property
+                        // console.log(newHotel)
+                        let newHotelLocation = {lat: newHotel.latitude, lng: newHotel.longitude};
+                        let marker = new google.maps.Marker({
+                            position: newHotelLocation, 
+                            title: newHotel.name, 
+                            map: map
+                        });
+                        google.maps.event.addListener(marker, 'click', (function(marker) {
+                            return function() {
+                                let newHotelUrl = '<a href="https://luxuryescapes.com/au/offer/' + luxapi[count].slug + '/' + luxapi[count].id_salesforce_external + '">' + newHotel.name + '</a>'
+                                infowindow.setContent('Discover: ' + newHotelUrl);
+                                infowindow.open(map, marker);
+                            }
+                        })(marker));
+                    }    
+                });
+            });
+        }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCW5WxWb1Z8k0MUahk3Uyf7EKIbaEUcJIg&callback=initMap">
+    </script>
     
 </body>
 </html>
