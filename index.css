@@ -1,4 +1,10 @@
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
 #map {
+    margin-left: 15%;
+    margin-right: 15%;
     height: 400px;  /* The height is 400 pixels */
-    width: 100%;  /* The width is the width of the web page */
+    width: 70%;  /* The width is the width of the web page */
 }
