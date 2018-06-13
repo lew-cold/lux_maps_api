@@ -1,4 +1,6 @@
+const data = {
 
+}
 // Initialise Google Maps API and initial viewframe
 
 function initMap() {
@@ -16,8 +18,9 @@ function initMap() {
 // Take the data and import it into Google Maps API
             
             let infowindow = new google.maps.InfoWindow()
-            let count, marker
-            let luxapi = result.result
+            let count
+            data.luxapi = result.result
+            let luxapi = data.luxapi
             for (count = 0; count < luxapi.length; count++) {
                 let newHotel = luxapi[count]
                 let newHotelDetails = newHotel.lowest_price_package.property
@@ -46,4 +49,16 @@ function initMap() {
 
 };
 
-// 
+document.getElementById("next").addEventListener("click", scrollVacations);
+document.getElementById("back").addEventListener("click", unScrollVacations);
+
+function scrollVacations() {
+    console.log('hello')
+    console.log(data.luxapi)
+}
+
+function scrollVacations() {
+    console.log('hello')
+    console.log(data.luxapi)
+}
+-
