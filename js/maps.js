@@ -36,7 +36,7 @@ function initMap() {
 
                 google.maps.event.addListener(marker, 'click', (function(marker) {
                     return function() {
-                        console.log(newHotel)
+                        // console.log(newHotel)
                         let newHotelUrl = '<a href="https://luxuryescapes.com/au/offer/' + newHotel.slug + '/' + newHotel.id_salesforce_external + '">' + newHotelDetails.name + '</a>'
                         infowindow.setContent('Discover: ' + newHotelUrl);
                         infowindow.open(map, marker);
@@ -57,8 +57,7 @@ function scrollVacations() {
     console.log(data.luxapi)
 }
 
-function scrollVacations() {
-    console.log('hello')
+function unScrollVacations() {
+    console.log('goodbye')
     console.log(data.luxapi)
 }
--
