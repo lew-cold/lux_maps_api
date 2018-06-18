@@ -1,6 +1,7 @@
 const data = {
-
 }
+property = 0
+
 // Initialise Google Maps API and initial viewframe
 
 function initMap() {
@@ -24,7 +25,6 @@ function initMap() {
             for (count = 0; count < luxapi.length; count++) {
                 let newHotel = luxapi[count]
                 let newHotelDetails = newHotel.lowest_price_package.property
-                // console.log(newHotel)
                 let newHotelLocation = {lat: newHotelDetails.latitude, lng: newHotelDetails.longitude};
                 let marker = new google.maps.Marker({
                     position: newHotelLocation, 
@@ -36,7 +36,6 @@ function initMap() {
 
                 google.maps.event.addListener(marker, 'click', (function(marker) {
                     return function() {
-                        // console.log(newHotel)
                         let newHotelUrl = '<a href="https://luxuryescapes.com/au/offer/' + newHotel.slug + '/' + newHotel.id_salesforce_external + '">' + newHotelDetails.name + '</a>'
                         infowindow.setContent('Discover: ' + newHotelUrl);
                         infowindow.open(map, marker);
@@ -52,12 +51,24 @@ function initMap() {
 document.getElementById("next").addEventListener("click", scrollVacations);
 document.getElementById("back").addEventListener("click", unScrollVacations);
 
+function showVacation(property) {
+    if (property >= data.luxapi.length) {
+        alert('You are at the end of the list, click back')
+    } else if (property < 0) {
+        alert('You are at the start, click next')
+    } else {
+        document.getElementById('vacation').innerHTML = data.luxapi[property].lowest_price_package.property.name
+    }
+}
+
 function scrollVacations() {
-    console.log('hello')
-    console.log(data.luxapi)
+    property++
+    showVacation(property)
+    // console.log('hello')
+    // console.log(data.luxapi)
 }
 
 function unScrollVacations() {
-    console.log('goodbye')
-    console.log(data.luxapi)
+    property--
+    showVacation(property)
 }
