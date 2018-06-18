@@ -1,5 +1,6 @@
 body {
     font-family: 'IBM Plex Sans', sans-serif;
+    margin-bottom: 15%;
 }
 
 #map {
@@ -8,3 +9,14 @@ body {
     height: 400px;  /* The height is 400 pixels */
     width: 70%;  /* The width is the width of the web page */
 }
+
+#hotelDescription {
+    padding: 5%;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+

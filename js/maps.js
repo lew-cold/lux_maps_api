@@ -1,5 +1,10 @@
+// Used to mount the fetch data so it is available globally
+
 const data = {
 }
+
+// Variable used to iterate through data via buttons
+
 property = 0
 
 // Initialise Google Maps API and initial viewframe
@@ -20,6 +25,7 @@ function initMap() {
             
             let infowindow = new google.maps.InfoWindow()
             let count
+            // Mounting fetch data
             data.luxapi = result.result
             let luxapi = data.luxapi
             for (count = 0; count < luxapi.length; count++) {
@@ -48,8 +54,12 @@ function initMap() {
 
 };
 
+// Listeners to detect button click
+
 document.getElementById("next").addEventListener("click", scrollVacations);
 document.getElementById("back").addEventListener("click", unScrollVacations);
+
+// Function to render the HTML content showing hotel descriptors
 
 function showVacation(property) {
     if (property >= data.luxapi.length) {
@@ -57,16 +67,20 @@ function showVacation(property) {
     } else if (property < 0) {
         alert('You are at the start, click next')
     } else {
-        document.getElementById('vacation').innerHTML = data.luxapi[property].lowest_price_package.property.name
+        document.getElementById('hotelImage').innerHTML = '<img src="https://res.cloudinary.com/lux-group/image/upload/f_auto,fl_progressive,q_auto:eco,c_fill,g_auto,w_798,ar_16:9/' + data.luxapi[property].images[0].id_cloudinary_external + '">'
+        document.getElementById('hotelTitle').innerHTML = '<a href="https://luxuryescapes.com/au/offer/' + data.luxapi[property].slug + '/' + data.luxapi[property].id_salesforce_external + '">' + data.luxapi[property].lowest_price_package.property.name + '</a>'
+        document.getElementById('hotelDescription').innerHTML = data.luxapi[property].description
     }
 }
+
+// Function to increase index number of hotel in array
 
 function scrollVacations() {
     property++
     showVacation(property)
-    // console.log('hello')
-    // console.log(data.luxapi)
 }
+
+// Function to decrease index number of hotel in array
 
 function unScrollVacations() {
     property--
