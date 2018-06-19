@@ -19,7 +19,6 @@
 
     <button id="back">Back</button>  | <button id="next">Next</button>
 
-
     <h2 id="hotelTitle"></h2>
     <div class="container">
     
@@ -28,13 +27,17 @@
         
     </div>
 
+    <!-- Loader for maps -->
 
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCW5WxWb1Z8k0MUahk3Uyf7EKIbaEUcJIg&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCW5WxWb1Z8k0MUahk3Uyf7EKIbaEUcJIg&callback=window.initMap">
     </script>
-    <!-- <script src="lib/buttons.js"></script> -->
-    <script src="lib/maps.js"></script>
-    <script src="lib/buttons.js"></script>
+
+    <!-- Where the magic happens -->
+
+    <script src="./src/index.js"></script>
+    
+    
     
 </body>
 </html>
