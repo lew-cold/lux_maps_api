@@ -21,6 +21,8 @@ The aim of the challenge is to digest the [Luxury Escapes public API](https://ap
 
 I utilised the use of a trello board to help plan and manage the different components I wanted to implement into this project.
 
+Live version: https://trello.com/b/hVWKvyLH/luxury-escapes-maps-api
+
 ![Lux maps API coding challenge](https://s3.us-east-2.amazonaws.com/projectassets/lux_assets/Screen+Shot+2018-06-20+at+14.00.40.png)
 
 
