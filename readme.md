@@ -1,5 +1,8 @@
 # Lux Group - Luxury Escapes - Maps API challenge
 
+Live Version: http://theyorkshirecoder.com/lux_maps_api/
+
+
 ## The Brief
 
 The aim of the challenge is to digest the [Luxury Escapes public API](https://api.luxgroup.com/api/public-offers) to plot the featured offerings on a map.
@@ -14,8 +17,10 @@ The aim of the challenge is to digest the [Luxury Escapes public API](https://ap
 
 ## Design Documentation
 
-### Wireframes
+### Trello Board
 
-### Trello Boards
+I utilised the use of a trello board to help plan and manage the different components I wanted to implement into this project.
+
+![Lux maps API coding challenge](https://s3.us-east-2.amazonaws.com/projectassets/lux_assets/Screen+Shot+2018-06-20+at+14.00.40.png)
 
 
