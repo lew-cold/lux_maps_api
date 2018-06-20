@@ -37,10 +37,10 @@ function initMap() {
 
                 google.maps.event.addListener(marker, 'click', (function(marker) {
                     return function() {
-                        let newHotelUrl = `<a id="infowindow_${count}" onclick="(event) => { event.preventDefault(); showVacation(${count})}" href="#">${newHotelDetails.name}</a>`
-                        // document.getElementById(`infowindow_${count}`).addEventListener("click", ` => { showVacation(count)} );
+                        let newHotelUrl = `<a id="infowindow_${count}" href="https://luxuryescapes.com/au/offer/${newHotel.slug}/${newHotel.id_salesforce_external}">${newHotelDetails.name}</a>`
                         infowindow.setContent('Discover: ' + newHotelUrl);
                         infowindow.open(map, marker);
+                        document.getElementById(`infowindow_${count}`).addEventListener("click", showVacation(count));
                     }
                 })(marker));
             }
@@ -71,6 +71,7 @@ function showVacation(property) {
         document.getElementById('hotelImage').innerHTML = '<img src="https://res.cloudinary.com/lux-group/image/upload/f_auto,fl_progressive,q_auto:eco,c_fill,g_auto,w_798,ar_16:9/' + data.luxapi[property].images[0].id_cloudinary_external + '">'
         document.getElementById('hotelTitle').innerHTML = '<a href="https://luxuryescapes.com/au/offer/' + data.luxapi[property].slug + '/' + data.luxapi[property].id_salesforce_external + '">' + data.luxapi[property].lowest_price_package.property.name + '</a>'
         document.getElementById('hotelDescription').innerHTML = data.luxapi[property].description
+        document.getElementById('propertyCounter').innerHTML = `Showing vacay ${property} out of ${data.luxapi.length}`
     }
 }
 
