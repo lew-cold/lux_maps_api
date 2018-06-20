@@ -20,11 +20,10 @@ function initMap() {
 // Take the data and import it into Google Maps API
             
             let infowindow = new google.maps.InfoWindow()
-            let count
             // Mounting fetch data
             data.luxapi = result.result
             let luxapi = data.luxapi
-            for (count = 0; count < luxapi.length; count++) {
+            for (let count = 0; count < luxapi.length; count++) {
                 let newHotel = luxapi[count]
                 let newHotelDetails = newHotel.lowest_price_package.property
                 let newHotelLocation = {lat: newHotelDetails.latitude, lng: newHotelDetails.longitude};
@@ -38,9 +37,8 @@ function initMap() {
 
                 google.maps.event.addListener(marker, 'click', (function(marker) {
                     return function() {
-                        let newHotelUrl = '<a href="no-javascript.html" title="Get some foo!" id="foo">' + newHotelDetails.name + '</a>'
-                        document.getElementById("foo").addEventListener("click", showVacation(count));
-
+                        let newHotelUrl = `<a id="infowindow_${count}" onclick="(event) => { event.preventDefault(); showVacation(${count})}" href="#">${newHotelDetails.name}</a>`
+                        // document.getElementById(`infowindow_${count}`).addEventListener("click", ` => { showVacation(count)} );
                         infowindow.setContent('Discover: ' + newHotelUrl);
                         infowindow.open(map, marker);
                     }
